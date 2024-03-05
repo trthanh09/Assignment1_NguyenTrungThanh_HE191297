@@ -62,6 +62,7 @@ class PupilManagementSystem:
 
     def search_pupil_record(self):
         roll_number = input("Enter pupil roll number to search: ")
+        found = False
         for pupil in self.pupils:
             if pupil.roll_number == roll_number:
                 print("PUPIL DETAILS..")
@@ -72,8 +73,9 @@ class PupilManagementSystem:
                 print(f"Physics: {pupil.Physics}")
                 print(f"Chemistry: {pupil.Chemistry}")
                 print(f"CS: {pupil.cs}")
+                found = True
                 break
-        else:
+        if not found:
             print(f"No pupil found with Roll No: {roll_number}")
 
     def modify_pupil_record(self):
@@ -118,8 +120,10 @@ class PupilManagementSystem:
                     report_choice = input("Enter your report choice: ")
                     if report_choice == '1':
                         print("Generating class result report...")
+                        self.display_all_pupil_records()
                     elif report_choice == '2':
                         print("Generating pupil report card...")
+                        self.search_pupil_record()
                     elif report_choice == '3':
                         break
                     else:
